@@ -12,9 +12,9 @@ const app = new PIXI.Application({
 let m_totalScore = 0;
 
 let m_numberOfBalls = 59; // max number of balls in lottery machine
-let m_numberOfBallsToDraw = 6; // number of balls to be drawn
+let m_numberOfBallsToDraw = 6; // number of balls to be drawn/picked
 
-let m_currentlyPickedBalls = [0, 0, 0, 0, 0, 0]; // balls currently drawn
+let m_currentlyPickedBalls = [0, 0, 0, 0, 0, 0]; // balls currently picked
 let m_currentlyDrawnBalls = [0, 0, 0, 0, 0, 0]; // balls currently drawn
 
 let balls = [];
@@ -157,6 +157,7 @@ export function luckyDipButtonPressed() {
  *
  */
 export function drawButtonPressed() {
+  if (!isCollectionFull()) return;
   drawBalls();
 }
 

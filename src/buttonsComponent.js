@@ -7,8 +7,6 @@ import {
 const m_positionDrawnX = 550;
 const m_positionDrawnY = 400;
 
-let buttons;
-
 const textureButton = PIXI.Texture.from("images/Button_Small_Blue.png");
 const textureButtonDown = PIXI.Texture.from(
   "images/Button_Small_Blue_Selected.png"
@@ -16,6 +14,8 @@ const textureButtonDown = PIXI.Texture.from(
 const textureButtonOver = PIXI.Texture.from(
   "images/Button_Small_Blue_Highlighted.png"
 );
+
+let buttons; // Not the best solution, but js class does not allow me to put it in the class, and to be accessible from the class methods, I guess this problem is well sorted in TypeScript
 
 /**
  * Class responsible for creating interface with buttons

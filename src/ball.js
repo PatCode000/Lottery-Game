@@ -18,11 +18,7 @@ export class Ball extends PIXI.Sprite {
     this.height = 60;
 
     this.interactive = true;
-    this
-      // Mouse & touch events are normalized into
-      // the pointer* events for handling different
-      // button events.
-      .on("pointerdown", this.onBallDown)
+    this.on("pointerdown", this.onBallDown)
       //.on("pointerup", this.onBallUp)
       //.on("pointerupoutside", this.onBallUp)
       .on("pointerover", this.onBallOver)
@@ -39,11 +35,6 @@ export class Ball extends PIXI.Sprite {
     });
     this.addChild(numberText);
   }
-  /*
-    addNumberToCollection() {
-      updatePickedBalls(this.number);
-    }
-  */
 
   /**
    * Return ball number
@@ -56,26 +47,28 @@ export class Ball extends PIXI.Sprite {
 
   onBallDown() {
     this.isdown = true;
-    if (!this.isPressed) {
-      if (isCollectionFull()) return;
-      this.texture = this.textureBallSelected;
-      this.isPressed = true;
-      addPickedBalls(this.getNumber());
-    } else {
+    if (this.isPressed) {
       this.texture = this.textureBall;
       this.isPressed = false;
-      removePickedBalls(this.getNumber());
       this.isdown = false;
       if (this.isOver) {
         this.texture = this.textureBallHighlighted;
       } else {
         this.texture = this.textureBall;
       }
+      removePickedBalls(this.getNumber());
+    } else {
+      if (isCollectionFull()) {
+        this.isdown = false;
+        return;
+      } else {
+        this.texture = this.textureBallSelected;
+        this.isPressed = true;
+        addPickedBalls(this.getNumber());
+      }
     }
 
     this.alpha = 1;
-
-    console.log(this.getNumber());
   }
 
   setBallIsPicked() {
