@@ -1,8 +1,10 @@
+/*
 import {
   luckyDipButtonPressed,
   drawButtonPressed,
   resetButtonPressed,
 } from "./game.js";
+*/
 
 const m_positionDrawnX = 550;
 const m_positionDrawnY = 400;
@@ -17,6 +19,10 @@ const textureButtonOver = PIXI.Texture.from(
 
 let buttons; // Not the best solution, but js class does not allow me to put it in the class, and to be accessible from the class methods, I guess this problem is well sorted in TypeScript
 
+const luckyDipEvent = new Event("lucky-dip-button-pressed");
+const drawEvent = new Event("draw-button-pressed");
+const resetEvent = new Event("reset-button-pressed");
+
 /**
  * Class responsible for creating interface with buttons
  *
@@ -24,6 +30,7 @@ let buttons; // Not the best solution, but js class does not allow me to put it 
 export class ButtonsComponent extends PIXI.Sprite {
   constructor() {
     super();
+
     this.textureButton;
 
     buttons = [];
@@ -81,13 +88,16 @@ export class ButtonsComponent extends PIXI.Sprite {
     this.alpha = 1;
 
     if (this == buttons[0]) {
-      luckyDipButtonPressed();
+      window.dispatchEvent(luckyDipEvent);
+      //luckyDipButtonPressed();
     }
     if (this == buttons[1]) {
-      drawButtonPressed();
+      window.dispatchEvent(drawEvent);
+      //drawButtonPressed();
     }
     if (this == buttons[2]) {
-      resetButtonPressed();
+      window.dispatchEvent(resetEvent);
+      //resetButtonPressed();
     }
   }
 

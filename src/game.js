@@ -29,6 +29,10 @@ window.onload = function () {
   createObjects();
 
   console.log("GAME LOADED");
+
+  window.addEventListener("lucky-dip-button-pressed", luckyDipButtonPressed);
+  window.addEventListener("draw-button-pressed", drawButtonPressed);
+  window.addEventListener("reset-button-pressed", resetButtonPressed);
 };
 
 /**
@@ -148,7 +152,7 @@ export function removePickedBalls(_number) {
  * Generate 6 random picks
  *
  */
-export function luckyDipButtonPressed() {
+function luckyDipButtonPressed() {
   randomPick();
 }
 
@@ -156,7 +160,7 @@ export function luckyDipButtonPressed() {
  * Call draw function, and do the checks
  *
  */
-export function drawButtonPressed() {
+function drawButtonPressed() {
   if (!isCollectionFull()) return;
   drawBalls();
 }
@@ -165,7 +169,7 @@ export function drawButtonPressed() {
  * Call reset function
  *
  */
-export function resetButtonPressed() {
+function resetButtonPressed() {
   resetGame();
 }
 

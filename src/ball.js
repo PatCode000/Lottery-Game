@@ -1,5 +1,9 @@
 import { addPickedBalls, removePickedBalls, isCollectionFull } from "./game.js";
 
+const addNumberEvent = new Event("add-number");
+const removeNumberEvent = new Event("remove-number");
+const isCollectionFullEvent = new Event("is-collection-full");
+
 export class Ball extends PIXI.Sprite {
   constructor(_number) {
     super();
@@ -87,17 +91,6 @@ export class Ball extends PIXI.Sprite {
       this.texture = this.textureBall;
     }
   }
-
-  /*
-  onBallUp() {
-    this.isdown = false;
-    if (this.isOver) {
-      this.texture = this.textureBallHighlighted;
-    } else {
-      this.texture = this.textureBall;
-    }
-  }
-  */
 
   onBallOver() {
     if (isCollectionFull()) return;
