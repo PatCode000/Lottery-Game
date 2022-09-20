@@ -1,7 +1,4 @@
-# Lottery-Game
- 
-Tech test project.
-
+# Lottery-Game (java script prototype)
 
 Game instructions:
 Blue balls can be picked manually, and when pressed an appropriate number appears on the top orange balls collection.
